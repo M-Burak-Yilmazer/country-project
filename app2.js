@@ -15,61 +15,60 @@ window.addEventListener("load", () => {
 });
 
 function getData(data) {
-  console.log(data);
-  data.forEach((element) => {
-    countries.innerHTML = `
+  let country = data[232];
+
+  countries.innerHTML = `
     <div class="card shadow-lg" style="width: 22rem">
             <img src="${
-              element.flags.png
+              country.flags.png
             }" class="card-img-top shadow" alt="..." />
             <div >
-              <h5 class="p-2 text-center">${element.name.common}</h5>
+              <h5 class="p-2 text-center">${country.name.common}</h5>
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">
                 <i class="fa-solid fa-earth-oceania"></i><span class="fw-bold"> Region:</span> ${
-                  element.region
+                  country.region
                 }
               </li>
               <li class="list-group-item">
                 <i class="fas fa-lg fa-landmark"></i>
-                <span class="fw-bold"> Capitals:</span> ${element.capital}
+                <span class="fw-bold"> Capitals:</span> ${country.capital}
               </li>
               <li class="list-group-item">
                 <i class="fas fa-lg fa-comments"></i>
                 <span class="fw-bold"> Languages:</span> ${Object.values(
-                  element.languages
+                  country.languages
                 )}
               </li>
               <li class="list-group-item">
                 <i class="fas fa-lg fa-money-bill-wave"></i>
                 <span class="fw-bold"> Currencies:</span> 
-                 ${element.currencies[Object.keys(element.currencies)[0]].name},
+                 ${country.currencies[Object.keys(country.currencies)[0]].name},
                  ${
-                   element.currencies[Object.keys(element.currencies)[0]].symbol
+                   country.currencies[Object.keys(country.currencies)[0]].symbol
                  }
               </li>
               <li class="list-group-item">
               <i class="fa-solid fa-people-group"></i></i>
-              <span class="fw-bold"> Population:</span> ${element.population.toLocaleString()}
+              <span class="fw-bold"> Population:</span> ${country.population.toLocaleString()}
             </li>
               <li class="list-group-item">
               <i class="fa-sharp fa-solid fa-road-barrier"></i>
-              <span class="fw-bold"> Borders:</span>  ${element.borders || null}
+              <span class="fw-bold"> Borders:</span>  ${country.borders || null}
             </li>
             </li>
             <li class="list-group-item">
               <i class="fa-solid fa-map-location-dot"></i><span class="fw-bold"> Map:</span> <a href="${
-                element.maps.googleMaps
+                country.maps.googleMaps
               }" target='_blank'> Go to google map</a> </li>
             </ul>
           </div>
     `;
-  });
 }
 
 const showCountryNames = (data) => {
-    data.sort((a,b)=>b.name.common-a.name.common)
+  data.sort((a, b) => b.name.common - a.name.common);
   const option = document.createElement("option");
   option.textContent = "Select Country";
   countrySelect.appendChild(option);

@@ -6,6 +6,8 @@ const getFetch = () => {
   fetch("https://restcountries.com/v3.1/all")
     .then((res) => res.json())
     .then((data) => {
+      
+      console.log(data);
       showCountryNames(data);
       getData(data);
     });
@@ -15,7 +17,7 @@ window.addEventListener("load", () => {
 });
 
 function getData(data) {
-  let country = data[232];
+  let country = data[227];
 
   countries.innerHTML = `
     <div class="card shadow-lg" style="width: 22rem">
@@ -67,8 +69,25 @@ function getData(data) {
     `;
 }
 
-const showCountryNames = (data) => {
-  data.sort((a, b) => b.name.common - a.name.common);
+const showCountryNames = (veri) => {
+    function compare(a, b) {
+      // Use toUpperCase() to ignore character casing
+      const bandA = a.name.common.toUpperCase();
+      const bandB = b.name.common.toUpperCase();
+
+      let comparison = 0;
+      if (bandA > bandB) {
+        comparison = 1;
+      } else if (bandA < bandB) {
+        comparison = -1;
+      }
+      return comparison;
+    }
+    const data=veri
+
+    data.sort(compare)
+ 
+
   const option = document.createElement("option");
   option.textContent = "Select Country";
   countrySelect.appendChild(option);
